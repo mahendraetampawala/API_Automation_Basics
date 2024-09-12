@@ -1,0 +1,32 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="APIAutomation"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="APIAutomation-resources" name="APIAutomation Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="APIAutomation.css" location="/css/APIAutomation.css"/>
+        <resource type="download" name="APIAutomation.js" location="/js/APIAutomation.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>APIAutomation</context>
+    </web-resource>
+    
+    <!-- publish our component -->
+    <component key="myPluginComponent" class="org.example.MyPluginComponentImpl" public="true">
+        <interface>org.example.MyPluginComponent</interface>
+    </component>
+    
+    <!-- import from the product container -->
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
+    
+</atlassian-plugin>
